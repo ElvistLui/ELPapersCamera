@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4ADF32E2496F5C2009092BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF32D2496F5C2009092BE /* AppDelegate.m */; };
+		B4ADF3342496F5C2009092BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF3332496F5C2009092BE /* ViewController.m */; };
+		B4ADF3372496F5C2009092BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4ADF3352496F5C2009092BE /* Main.storyboard */; };
+		B4ADF3392496F5C2009092BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4ADF3382496F5C2009092BE /* Assets.xcassets */; };
+		B4ADF33C2496F5C2009092BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4ADF33A2496F5C2009092BE /* LaunchScreen.storyboard */; };
+		B4ADF33F2496F5C2009092BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF33E2496F5C2009092BE /* main.m */; };
+		B4ADF3492496F997009092BE /* ELPapersCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF3482496F997009092BE /* ELPapersCameraViewController.m */; };
+		B4ADF34F24970312009092BE /* ELPapersClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF34E24970312009092BE /* ELPapersClipViewController.m */; };
+		B4ADF352249705E1009092BE /* ELPapersCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF351249705E1009092BE /* ELPapersCamera.m */; };
+		B4ADF355249713B6009092BE /* ELPapersPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF354249713B6009092BE /* ELPapersPanelView.m */; };
+		B4ADF358249730CF009092BE /* ELPapersContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF357249730CF009092BE /* ELPapersContentView.m */; };
+		B4ADF35A249773B7009092BE /* ELPapersCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B4ADF359249773B7009092BE /* ELPapersCamera.bundle */; };
+		FED7F102AAB9D2B592EBE407 /* libPods-ELPapersCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D0879BC412FD135FA462E03 /* libPods-ELPapersCamera.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		021B1DBCD16458D616E1B797 /* Pods-ELPapersCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELPapersCamera.debug.xcconfig"; path = "Target Support Files/Pods-ELPapersCamera/Pods-ELPapersCamera.debug.xcconfig"; sourceTree = "<group>"; };
+		3AC0542D604A53CD20CF45D4 /* Pods-ELPapersCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELPapersCamera.release.xcconfig"; path = "Target Support Files/Pods-ELPapersCamera/Pods-ELPapersCamera.release.xcconfig"; sourceTree = "<group>"; };
+		6D0879BC412FD135FA462E03 /* libPods-ELPapersCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ELPapersCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4ADF3292496F5C2009092BE /* 证件照相机.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "证件照相机.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4ADF32C2496F5C2009092BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B4ADF32D2496F5C2009092BE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B4ADF3322496F5C2009092BE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B4ADF3332496F5C2009092BE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B4ADF3362496F5C2009092BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B4ADF3382496F5C2009092BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B4ADF33B2496F5C2009092BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B4ADF33D2496F5C2009092BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4ADF33E2496F5C2009092BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4ADF3462496F891009092BE /* ELPapersMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersMacro.h; sourceTree = "<group>"; };
+		B4ADF3472496F997009092BE /* ELPapersCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersCameraViewController.h; sourceTree = "<group>"; };
+		B4ADF3482496F997009092BE /* ELPapersCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersCameraViewController.m; sourceTree = "<group>"; };
+		B4ADF34D24970312009092BE /* ELPapersClipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersClipViewController.h; sourceTree = "<group>"; };
+		B4ADF34E24970312009092BE /* ELPapersClipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersClipViewController.m; sourceTree = "<group>"; };
+		B4ADF350249705E1009092BE /* ELPapersCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersCamera.h; sourceTree = "<group>"; };
+		B4ADF351249705E1009092BE /* ELPapersCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersCamera.m; sourceTree = "<group>"; };
+		B4ADF353249713B6009092BE /* ELPapersPanelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersPanelView.h; sourceTree = "<group>"; };
+		B4ADF354249713B6009092BE /* ELPapersPanelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersPanelView.m; sourceTree = "<group>"; };
+		B4ADF356249730CF009092BE /* ELPapersContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersContentView.h; sourceTree = "<group>"; };
+		B4ADF357249730CF009092BE /* ELPapersContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersContentView.m; sourceTree = "<group>"; };
+		B4ADF359249773B7009092BE /* ELPapersCamera.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ELPapersCamera.bundle; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4ADF3262496F5C2009092BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FED7F102AAB9D2B592EBE407 /* libPods-ELPapersCamera.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		059804E0AC7635CA08246D07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D0879BC412FD135FA462E03 /* libPods-ELPapersCamera.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4ADF3202496F5C2009092BE = {
+			isa = PBXGroup;
+			children = (
+				B4ADF32B2496F5C2009092BE /* ELPapersCamera */,
+				B4ADF32A2496F5C2009092BE /* Products */,
+				EB7DAF89372BE219C35EF1BF /* Pods */,
+				059804E0AC7635CA08246D07 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B4ADF32A2496F5C2009092BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4ADF3292496F5C2009092BE /* 证件照相机.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4ADF32B2496F5C2009092BE /* ELPapersCamera */ = {
+			isa = PBXGroup;
+			children = (
+				B4ADF3452496F837009092BE /* ELPapersCamera */,
+				B4ADF32C2496F5C2009092BE /* AppDelegate.h */,
+				B4ADF32D2496F5C2009092BE /* AppDelegate.m */,
+				B4ADF3322496F5C2009092BE /* ViewController.h */,
+				B4ADF3332496F5C2009092BE /* ViewController.m */,
+				B4ADF3352496F5C2009092BE /* Main.storyboard */,
+				B4ADF3382496F5C2009092BE /* Assets.xcassets */,
+				B4ADF33A2496F5C2009092BE /* LaunchScreen.storyboard */,
+				B4ADF33D2496F5C2009092BE /* Info.plist */,
+				B4ADF33E2496F5C2009092BE /* main.m */,
+			);
+			path = ELPapersCamera;
+			sourceTree = "<group>";
+		};
+		B4ADF3452496F837009092BE /* ELPapersCamera */ = {
+			isa = PBXGroup;
+			children = (
+				B4ADF359249773B7009092BE /* ELPapersCamera.bundle */,
+				B4ADF3462496F891009092BE /* ELPapersMacro.h */,
+				B4ADF3472496F997009092BE /* ELPapersCameraViewController.h */,
+				B4ADF3482496F997009092BE /* ELPapersCameraViewController.m */,
+				B4ADF34D24970312009092BE /* ELPapersClipViewController.h */,
+				B4ADF34E24970312009092BE /* ELPapersClipViewController.m */,
+				B4ADF353249713B6009092BE /* ELPapersPanelView.h */,
+				B4ADF354249713B6009092BE /* ELPapersPanelView.m */,
+				B4ADF356249730CF009092BE /* ELPapersContentView.h */,
+				B4ADF357249730CF009092BE /* ELPapersContentView.m */,
+				B4ADF350249705E1009092BE /* ELPapersCamera.h */,
+				B4ADF351249705E1009092BE /* ELPapersCamera.m */,
+			);
+			path = ELPapersCamera;
+			sourceTree = "<group>";
+		};
+		EB7DAF89372BE219C35EF1BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				021B1DBCD16458D616E1B797 /* Pods-ELPapersCamera.debug.xcconfig */,
+				3AC0542D604A53CD20CF45D4 /* Pods-ELPapersCamera.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4ADF3282496F5C2009092BE /* ELPapersCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4ADF3422496F5C2009092BE /* Build configuration list for PBXNativeTarget "ELPapersCamera" */;
+			buildPhases = (
+				C4748B8FC4D34FC56DF332EB /* [CP] Check Pods Manifest.lock */,
+				B4ADF3252496F5C2009092BE /* Sources */,
+				B4ADF3262496F5C2009092BE /* Frameworks */,
+				B4ADF3272496F5C2009092BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ELPapersCamera;
+			productName = ELPapersCamera;
+			productReference = B4ADF3292496F5C2009092BE /* 证件照相机.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4ADF3212496F5C2009092BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = xiaoxiao;
+				TargetAttributes = {
+					B4ADF3282496F5C2009092BE = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = B4ADF3242496F5C2009092BE /* Build configuration list for PBXProject "ELPapersCamera" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B4ADF3202496F5C2009092BE;
+			productRefGroup = B4ADF32A2496F5C2009092BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4ADF3282496F5C2009092BE /* ELPapersCamera */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4ADF3272496F5C2009092BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4ADF33C2496F5C2009092BE /* LaunchScreen.storyboard in Resources */,
+				B4ADF3392496F5C2009092BE /* Assets.xcassets in Resources */,
+				B4ADF35A249773B7009092BE /* ELPapersCamera.bundle in Resources */,
+				B4ADF3372496F5C2009092BE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4748B8FC4D34FC56DF332EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ELPapersCamera-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4ADF3252496F5C2009092BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4ADF3342496F5C2009092BE /* ViewController.m in Sources */,
+				B4ADF3492496F997009092BE /* ELPapersCameraViewController.m in Sources */,
+				B4ADF352249705E1009092BE /* ELPapersCamera.m in Sources */,
+				B4ADF32E2496F5C2009092BE /* AppDelegate.m in Sources */,
+				B4ADF33F2496F5C2009092BE /* main.m in Sources */,
+				B4ADF355249713B6009092BE /* ELPapersPanelView.m in Sources */,
+				B4ADF34F24970312009092BE /* ELPapersClipViewController.m in Sources */,
+				B4ADF358249730CF009092BE /* ELPapersContentView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B4ADF3352496F5C2009092BE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4ADF3362496F5C2009092BE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B4ADF33A2496F5C2009092BE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4ADF33B2496F5C2009092BE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4ADF3402496F5C2009092BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B4ADF3412496F5C2009092BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4ADF3432496F5C2009092BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 021B1DBCD16458D616E1B797 /* Pods-ELPapersCamera.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2469K559SY;
+				INFOPLIST_FILE = ELPapersCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoxiao.ELPapersCamera;
+				PRODUCT_NAME = "证件照相机";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B4ADF3442496F5C2009092BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AC0542D604A53CD20CF45D4 /* Pods-ELPapersCamera.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2469K559SY;
+				INFOPLIST_FILE = ELPapersCamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaoxiao.ELPapersCamera;
+				PRODUCT_NAME = "证件照相机";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4ADF3242496F5C2009092BE /* Build configuration list for PBXProject "ELPapersCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4ADF3402496F5C2009092BE /* Debug */,
+				B4ADF3412496F5C2009092BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4ADF3422496F5C2009092BE /* Build configuration list for PBXNativeTarget "ELPapersCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4ADF3432496F5C2009092BE /* Debug */,
+				B4ADF3442496F5C2009092BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4ADF3212496F5C2009092BE /* Project object */;
+}
