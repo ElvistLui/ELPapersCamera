@@ -8,11 +8,14 @@
 
 #import "ViewController.h"
 
-#import "ELPapersCameraViewController.h"
+#import "ELPapersCamera.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *imgView;
+
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
@@ -25,22 +28,33 @@
     self.title = @"证件照相机";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    _dataArray = @[[self dicWithTitle:@"默认" code:ELCameraTypeNormal],
+                   [self dicWithTitle:@"头像" code:ELCameraTypeAvatar],
+                   [self dicWithTitle:@"身份证正面" code:ELCameraTypeIdFront],
+                   [self dicWithTitle:@"身份证背面" code:ELCameraTypeIdBack],
+                   [self dicWithTitle:@"驾驶证正本正面" code:ELCameraTypeDriverFront],
+                   [self dicWithTitle:@"驾驶证正本背面" code:ELCameraTypeDriverBack],
+                   [self dicWithTitle:@"驾驶证副本" code:ELCameraTypeDriverCopy],
+                   [self dicWithTitle:@"行驶证正面" code:ELCameraTypeVehicleFront],
+                   [self dicWithTitle:@"行驶证副本" code:ELCameraTypeVehicleCopy],
+    ];
+    
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
     
     _imgView = [UIImageView new];
-    _imgView.frame = CGRectMake(20, 350, kScreenWidth - 40, 300);
+    _imgView.frame = CGRectMake(0, 0, kScreenWidth, 300);
     _imgView.contentMode = UIViewContentModeScaleAspectFit;
     _imgView.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:_imgView];
+    _tableView.tableFooterView = _imgView;
 }
 
 #pragma mark - tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return _dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -50,81 +64,31 @@
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    cell.textLabel.text = [self titleWithRow:indexPath.row];
+    NSDictionary *dic = _dataArray[indexPath.row];
+    cell.textLabel.text = dic[@"title"];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    ELPapersCameraViewController *vc = [ELPapersCameraViewController new];
-    vc.typeCode = [self typeCodeWithRow:indexPath.row];
+    NSDictionary *dic = _dataArray[indexPath.row];
     @weakify(self);
-    vc.imageBlock = ^(ELCameraTypeCode typeCode, UIImage * _Nullable image) {
-
+    
+    ELPapersCamera *camera = [ELPapersCamera shared];
+    camera.imageBlock = ^(ELCameraTypeCode typeCode, UIImage * _Nullable image) {
+        
         weak_self.imgView.image = image;
     };
-
-    // 建议使用方式一
-    // 方式一：modal
-    [self presentViewController:vc animated:YES completion:nil];
-
-    // 方式二：push
-//    [self.navigationController pushViewController:vc animated:YES];
+    [camera showFromViewController:self typeCode:[dic[@"code"] integerValue]];
 }
 
 #pragma mark - private
-- (NSString *)titleWithRow:(NSInteger)row
+- (NSDictionary *)dicWithTitle:(NSString *)title code:(ELCameraTypeCode)code
 {
-    NSString *text;
-    switch (row) {
-        case 0:
-            text = @"默认";
-            break;
-        case 1:
-            text = @"身份证正面";
-            break;
-        case 2:
-            text = @"身份证背面";
-            break;
-        case 3:
-            text = @"驾驶证正面";
-            break;
-        case 4:
-            text = @"驾驶证背面";
-            break;
-            
-        default:
-            text = @"";
-            break;
-    }
-    return text;
-}
-- (ELCameraTypeCode)typeCodeWithRow:(NSInteger)row
-{
-    ELCameraTypeCode typeCode;
-    switch (row) {
-        case 0:
-            typeCode = ELCameraTypeNormal;
-            break;
-        case 1:
-            typeCode = ELCameraTypeIdFront;
-            break;
-        case 2:
-            typeCode = ELCameraTypeIdBack;
-            break;
-        case 3:
-            typeCode = ELCameraTypeDriverFront;
-            break;
-        case 4:
-            typeCode = ELCameraTypeDriverBack;
-            break;
-            
-        default:
-            typeCode = ELCameraTypeNormal;
-            break;
-    }
-    return typeCode;
+    return @{@"title" : title,
+             @"code" : @(code)
+    };
 }
 
 @end

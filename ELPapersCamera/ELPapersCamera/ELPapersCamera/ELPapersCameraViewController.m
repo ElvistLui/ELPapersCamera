@@ -12,7 +12,7 @@
 #import "ELPapersPanelView.h"
 #import "ELPapersContentView.h"
 
-#import "ELPapersCamera.h"
+#import "ELPapersPhotographer.h"
 
 @interface ELPapersCameraViewController () <ELPapersClipViewControllerDelegate>
 
@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIView *bottomView;   ///< 底部工具栏
 @property (nonatomic, strong) ELPapersClipViewController *clipVC;  ///< 展示裁切后的图片
 
-@property (nonatomic, strong) ELPapersCamera *camera;   ///< 相机管理对象
+@property (nonatomic, strong) ELPapersPhotographer *camera; ///< 相机管理对象
 @property (nonatomic, strong) UIImage *resultImage;     ///< 拍摄的照片
 
 @end
@@ -80,7 +80,7 @@
     }
     
     //
-    _camera = [ELPapersCamera new];
+    _camera = [ELPapersPhotographer new];
     
     // 底层蒙版
     [self setupPanelView];
@@ -117,7 +117,7 @@
     }];
     [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.top.equalTo(@15);
+        make.top.equalTo(@(kWindow_StatusBarHeight));
         make.left.right.equalTo(@0);
         make.height.equalTo(@30);
     }];
@@ -136,7 +136,12 @@
         self.navigationItem.title = @"默认";
     } else {
         
+        _contentView.hidden = NO;
         switch (_typeCode) {
+            case ELCameraTypeAvatar:
+                self.navigationItem.title = @"拍摄头像";
+                _contentView.hidden = YES;
+                break;
             case ELCameraTypeIdFront:
                 self.navigationItem.title = @"中华人民共和国居民身份证正面";
                 _contentView.titleLabel.text = @"中华人民共和国居民身份证正面";
@@ -157,6 +162,21 @@
                 _contentView.titleLabel.text = @"中华人民共和国机动车驾驶证";
                 _contentView.descLabel.text = @"将驾驶证正本背面置于此区域，并对齐左下角的条形码";
                 break;
+            case ELCameraTypeDriverCopy:
+                self.navigationItem.title = @"拍摄驾驶证副本";
+                _contentView.titleLabel.text = @"中华人民共和国机动车驾驶证副本";
+                _contentView.descLabel.text = @"将驾驶证副本置于此区域，并对齐右下角条形码";
+                break;
+            case ELCameraTypeVehicleFront:
+                self.navigationItem.title = @"拍摄行驶证正本";
+                _contentView.titleLabel.text = @"中华人民共和国机动车行驶证";
+                _contentView.descLabel.text = @"将行驶证主页置于此区域，并对齐左下角发证机关印章";
+                break;
+            case ELCameraTypeVehicleCopy:
+                self.navigationItem.title = @"拍摄行驶证副本";
+                _contentView.titleLabel.text = @"中华人民共和国机动车行驶证副本";
+                _contentView.descLabel.text = @"将行驶证副本置于此区域，并对齐右下角条形码";
+                break;
                 
             default:
                 break;
@@ -170,6 +190,7 @@
     [self.view addSubview:_bottomView];
     
     UIButton *cameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cameraButton.exclusiveTouch = YES;
     [cameraButton setImage:[UIImage imageNamed:@"ELPapersCamera.bundle/img_toolbar_takephoto"] forState:UIControlStateNormal];
     [cameraButton addTarget:self action:@selector(didClickCameraButton:) forControlEvents:UIControlEventTouchUpInside];
     [_bottomView addSubview:cameraButton];
@@ -235,6 +256,16 @@
         CGFloat y = 0;
         CGFloat w = (sz.width/size.width)*(size.width);
         CGFloat h = (sz.height/size.height)*(size.height-100);
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), NO, 0);
+        [image drawAtPoint:CGPointMake(-x, -y)];
+    } else if (_typeCode == ELCameraTypeAvatar) {
+        
+        CGSize sz = [image size];
+        CGSize size = self.view.bounds.size;
+        CGFloat x = (sz.width/size.width)*15;
+        CGFloat y = (sz.height/size.height)*150;
+        CGFloat w = (sz.width/size.width)*(size.width-30);
+        CGFloat h = (sz.height/size.height)*((size.width-30)*0.645);
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), NO, 0);
         [image drawAtPoint:CGPointMake(-x, -y)];
     } else {

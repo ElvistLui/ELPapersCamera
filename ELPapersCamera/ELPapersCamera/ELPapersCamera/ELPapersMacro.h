@@ -24,11 +24,17 @@
 
 typedef NS_ENUM(NSUInteger, ELCameraTypeCode) {
     ELCameraTypeNormal = 0, ///< 默认
+    ELCameraTypeAvatar,     ///< 头像
     ELCameraTypeIdFront,    ///< 身份证正面
     ELCameraTypeIdBack,     ///< 身份证背面
     ELCameraTypeDriverFront,    ///< 驾驶证正面
     ELCameraTypeDriverBack,     ///< 驾驶证背面
+    ELCameraTypeDriverCopy,     ///< 驾驶证副本
+    ELCameraTypeVehicleFront,   ///< 行驶证正面
+    ELCameraTypeVehicleCopy,    ///< 行驶证副本
 };
+
+typedef void(^ _Nullable ELPapersCameraImageBlock)(ELCameraTypeCode typeCode, UIImage * _Nullable image);
 
 //****** Frame相关 ******//
 #define kScreenWidth    [UIScreen mainScreen].bounds.size.width

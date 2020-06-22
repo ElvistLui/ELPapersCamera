@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ELPapersCameraViewController : UIViewController
 
 @property (nonatomic, assign) ELCameraTypeCode typeCode;    ///< 拍摄的证件类型
-@property (nonatomic, copy) void (^imageBlock)(ELCameraTypeCode typeCode, UIImage * _Nullable image);  ///< 拍照并确定后的回调
+@property (nonatomic, copy) ELPapersCameraImageBlock imageBlock;  ///< 拍照并确定后的回调
 
 @end
 

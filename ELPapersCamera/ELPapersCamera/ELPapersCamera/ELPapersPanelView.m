@@ -26,6 +26,18 @@
         
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:[UIScreen mainScreen].bounds];
         [path fillWithBlendMode:kCGBlendModeClear alpha:1.0];
+    } else if (_typeCode == ELCameraTypeAvatar) {
+           
+        CGFloat size = rect.size.width*0.5;
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake((rect.size.width-size)/2, 150, size, size)
+                                                        cornerRadius:0];
+        [path fillWithBlendMode:kCGBlendModeClear alpha:1.0];
+        
+        UIBezierPath *path2= [UIBezierPath bezierPathWithRoundedRect:CGRectMake((rect.size.width-size)/2, 150, size, size)
+                                                         cornerRadius:0];
+        path2.lineWidth = 1;
+        [[UIColor whiteColor] set];
+        [path2 stroke];
     } else {
     
         UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 150, rect.size.width-30, (rect.size.width-30)*0.645)

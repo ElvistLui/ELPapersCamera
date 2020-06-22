@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong) UIView *driverFrontView;
 @property (nonatomic, strong) UIView *driverBackView;
+@property (nonatomic, strong) UIView *driverCopyView;
+@property (nonatomic, strong) UIView *vehicleFrontView;
+@property (nonatomic, strong) UIView *vehicleCopyView;
 
 @end
 
@@ -123,6 +126,56 @@
                 
                 make.bottom.equalTo(@-20);
                 make.left.equalTo(@20);
+                make.width.equalTo(@170);
+                make.height.equalTo(@30);
+            }];
+        }
+            break;
+        case ELCameraTypeDriverCopy:
+        {
+            _driverBackView = [UIView new];
+            _driverBackView.layer.cornerRadius = 3;
+            _driverBackView.layer.borderWidth = 1;
+            _driverBackView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:_driverBackView];
+            
+            [_driverBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.equalTo(@-20);
+                make.right.equalTo(@-20);
+                make.width.equalTo(@170);
+                make.height.equalTo(@30);
+            }];
+        }
+            break;
+        case ELCameraTypeVehicleFront:
+        {
+            _vehicleFrontView = [UIView new];
+            _vehicleFrontView.layer.cornerRadius = 3;
+            _vehicleFrontView.layer.borderWidth = 1;
+            _vehicleFrontView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:_vehicleFrontView];
+            
+            [_vehicleFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.equalTo(@-20);
+                make.left.equalTo(@20);
+                make.width.height.equalTo(@90);
+            }];
+        }
+            break;
+        case ELCameraTypeVehicleCopy:
+        {
+            _vehicleCopyView = [UIView new];
+            _vehicleCopyView.layer.cornerRadius = 3;
+            _vehicleCopyView.layer.borderWidth = 1;
+            _vehicleCopyView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:_vehicleCopyView];
+            
+            [_vehicleCopyView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.bottom.equalTo(@-20);
+                make.right.equalTo(@-20);
                 make.width.equalTo(@170);
                 make.height.equalTo(@30);
             }];

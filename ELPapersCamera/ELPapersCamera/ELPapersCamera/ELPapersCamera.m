@@ -2,94 +2,61 @@
 //  ELPapersCamera.m
 //  ELPapersCamera
 //
-//  Created by Elvist on 2020/6/13.
+//  Created by Elvist on 2020/6/22.
 //  Copyright © 2020 xiaoxiao. All rights reserved.
 //
 
 #import "ELPapersCamera.h"
-#import <AVFoundation/AVFoundation.h>
+#import "ELPapersCameraViewController.h"
 
-@interface ELPapersCamera ()
-
-@property (nonatomic, strong) AVCaptureSession *session;
+@interface ELPapersCamera ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
 @implementation ELPapersCamera
 
-#pragma mark - public
-- (void)setupCameraWithViewController:(UIViewController *)vc
++ (instancetype)shared
 {
-    AVCaptureSession *session = [[AVCaptureSession alloc]init];
-    _session = session;
- 
-    AVCaptureDevice *device = nil;
-    NSArray *cameras = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-    for (AVCaptureDevice *camera in cameras) {
+    static ELPapersCamera *obj = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         
-        if(camera.position == AVCaptureDevicePositionBack) {
-            
-            device = camera;
-        }
-    }
-    if(!device) {
-        
-        DDLog(@"取得后置摄像头错误");
-        return;
-    }
-    NSError *error = nil;
-    AVCaptureDeviceInput *captureInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
-    if(error) {
-        
-        DDLog(@"创建输入数据对象错误");
-        return;
-    }
-    
-    AVCaptureStillImageOutput *imageOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *setting = @{AVVideoCodecKey:AVVideoCodecJPEG};
-    [imageOutput setOutputSettings:setting];
-    
-    if([session canAddInput:captureInput]) {
-        
-        [session addInput:captureInput];
-    }
-    if([session canAddOutput:imageOutput]) {
-        
-        [session addOutput:imageOutput];
-    }
-    
-    AVCaptureVideoPreviewLayer *videoLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-    videoLayer.frame = vc.view.bounds;
-    videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    vc.view.layer.masksToBounds = YES;
-    [vc.view.layer insertSublayer:videoLayer atIndex:0];
-    
-    [session startRunning];
+        obj = [[self class] new];
+    });
+    return obj;
 }
 
-- (void)takeImage:(ELPapersCameraBlock)block
+- (void)showFromViewController:(UIViewController *)viewController typeCode:(ELCameraTypeCode)typeCode
 {
-    AVCaptureStillImageOutput *output = _session.outputs.firstObject;
-    AVCaptureConnection *connection = [output connectionWithMediaType:AVMediaTypeVideo];
-    [output captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error){
+    if (typeCode == ELCameraTypeAvatar) {
         
-        if (imageDataSampleBuffer) {
+        UIImagePickerController *vc = [UIImagePickerController new];
+        vc.sourceType = UIImagePickerControllerSourceTypeCamera;
+        vc.allowsEditing = YES;
+        vc.delegate = self;
+        [viewController presentViewController:vc animated:YES completion:nil];
+    } else {
+        
+        @weakify(self);
+        ELPapersCameraViewController *vc = [ELPapersCameraViewController new];
+        vc.typeCode = typeCode;
+        vc.imageBlock = ^(ELCameraTypeCode typeCode, UIImage * _Nullable image) {
             
-            NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
-            
-            [self.session stopRunning];
-            if (block) block(image);
-        }
-    }];
+            if (weak_self.imageBlock) weak_self.imageBlock(typeCode, image);
+        };
+        [viewController presentViewController:vc animated:YES completion:nil];
+    }
 }
-- (void)start
+
+#pragma mark - UINavigationControllerDelegate
+ 
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
 {
-    [_session startRunning];
-}
-- (void)stop
-{
-    [_session stopRunning];
+    DDLog(@"%@", info);
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (_imageBlock) _imageBlock(ELCameraTypeAvatar, image);
 }
 
 @end
