@@ -23,8 +23,8 @@
 
 @implementation ELPapersContentView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
+    
     self = [super initWithFrame:frame];
     if (self) {
                 
@@ -35,30 +35,32 @@
     }
     return self;
 }
-- (void)setupSubviews
-{
-    _titleLabel = [UILabel new];
-    _titleLabel.font = [UIFont systemFontOfSize:16];
-    _titleLabel.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.7];
-    _titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:_titleLabel];
+
+- (void)setupSubviews {
     
-    _descLabel = [UILabel new];
-    _descLabel.font = [UIFont systemFontOfSize:12];
-    _descLabel.textColor = [UIColor whiteColor];
-    _descLabel.textAlignment = NSTextAlignmentCenter;
-    _descLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.31];
-    [self addSubview:_descLabel];
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.font = [UIFont systemFontOfSize:16];
+    self.titleLabel.textColor = [[UIColor grayColor] colorWithAlphaComponent:0.7];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.titleLabel];
+    
+    self.descLabel = [[UILabel alloc] init];
+    self.descLabel.font = [UIFont systemFontOfSize:12];
+    self.descLabel.textColor = [UIColor whiteColor];
+    self.descLabel.textAlignment = NSTextAlignmentCenter;
+    self.descLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.31];
+    [self addSubview:self.descLabel];
 }
-- (void)setupLayout
-{
-    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+- (void)setupLayout {
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(@0);
         make.centerX.equalTo(self);
         make.height.equalTo(@45);
     }];
-    [_descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(self.mas_bottom).offset(15);
         make.centerX.equalTo(self);
@@ -69,18 +71,17 @@
 }
 
 #pragma mark - setter
-- (void)setTypeCode:(ELCameraTypeCode)typeCode
-{
+- (void)setTypeCode:(ELCameraTypeCode)typeCode {
     _typeCode = typeCode;
     
     switch (typeCode) {
         case ELCameraTypeIdFront:
         {
-            _idFrontView = [UIImageView new];
-            _idFrontView.image = [UIImage imageNamed:@"ELPapersCamera.bundle/img_id_front"];
-            [self addSubview:_idFrontView];
+            self.idFrontView = [[UIImageView alloc] init];
+            self.idFrontView.image = [UIImage imageNamed:@"ELPapersCamera.bundle/img_id_front"];
+            [self addSubview:self.idFrontView];
             
-            [_idFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.idFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.top.bottom.left.right.equalTo(@0);
             }];
@@ -88,11 +89,11 @@
             break;
         case ELCameraTypeIdBack:
         {
-            _idBackView = [UIImageView new];
-            _idBackView.image = [UIImage imageNamed:@"ELPapersCamera.bundle/img_id_back"];
-            [self addSubview:_idBackView];
+            self.idBackView = [[UIImageView alloc] init];
+            self.idBackView.image = [UIImage imageNamed:@"ELPapersCamera.bundle/img_id_back"];
+            [self addSubview:self.idBackView];
             
-            [_idBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.idBackView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.top.bottom.left.right.equalTo(@0);
             }];
@@ -100,13 +101,13 @@
             break;
         case ELCameraTypeDriverFront:
         {
-            _driverFrontView = [UIView new];
-            _driverFrontView.layer.cornerRadius = 3;
-            _driverFrontView.layer.borderWidth = 1;
-            _driverFrontView.layer.borderColor = [UIColor whiteColor].CGColor;
-            [self addSubview:_driverFrontView];
+            self.driverFrontView =[[UIView alloc] init];
+            self.driverFrontView.layer.cornerRadius = 3;
+            self.driverFrontView.layer.borderWidth = 1;
+            self.driverFrontView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:self.driverFrontView];
             
-            [_driverFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.driverFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.bottom.equalTo(@-20);
                 make.left.equalTo(@20);
@@ -116,13 +117,13 @@
             break;
         case ELCameraTypeDriverBack:
         {
-            _driverBackView = [UIView new];
-            _driverBackView.layer.cornerRadius = 3;
-            _driverBackView.layer.borderWidth = 1;
-            _driverBackView.layer.borderColor = [UIColor whiteColor].CGColor;
-            [self addSubview:_driverBackView];
+            self.driverBackView =[[UIView alloc] init];
+            self.driverBackView.layer.cornerRadius = 3;
+            self.driverBackView.layer.borderWidth = 1;
+            self.driverBackView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:self.driverBackView];
             
-            [_driverBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.driverBackView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.bottom.equalTo(@-20);
                 make.left.equalTo(@20);
@@ -133,13 +134,13 @@
             break;
         case ELCameraTypeDriverCopy:
         {
-            _driverBackView = [UIView new];
-            _driverBackView.layer.cornerRadius = 3;
-            _driverBackView.layer.borderWidth = 1;
-            _driverBackView.layer.borderColor = [UIColor whiteColor].CGColor;
-            [self addSubview:_driverBackView];
+            self.driverBackView =[[UIView alloc] init];
+            self.driverBackView.layer.cornerRadius = 3;
+            self.driverBackView.layer.borderWidth = 1;
+            self.driverBackView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:self.driverBackView];
             
-            [_driverBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.driverBackView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.bottom.equalTo(@-20);
                 make.right.equalTo(@-20);
@@ -150,13 +151,13 @@
             break;
         case ELCameraTypeVehicleFront:
         {
-            _vehicleFrontView = [UIView new];
-            _vehicleFrontView.layer.cornerRadius = 3;
-            _vehicleFrontView.layer.borderWidth = 1;
-            _vehicleFrontView.layer.borderColor = [UIColor whiteColor].CGColor;
-            [self addSubview:_vehicleFrontView];
+            self.vehicleFrontView =[[UIView alloc] init];
+            self.vehicleFrontView.layer.cornerRadius = 3;
+            self.vehicleFrontView.layer.borderWidth = 1;
+            self.vehicleFrontView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:self.vehicleFrontView];
             
-            [_vehicleFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.vehicleFrontView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.bottom.equalTo(@-20);
                 make.left.equalTo(@20);
@@ -166,13 +167,13 @@
             break;
         case ELCameraTypeVehicleCopy:
         {
-            _vehicleCopyView = [UIView new];
-            _vehicleCopyView.layer.cornerRadius = 3;
-            _vehicleCopyView.layer.borderWidth = 1;
-            _vehicleCopyView.layer.borderColor = [UIColor whiteColor].CGColor;
-            [self addSubview:_vehicleCopyView];
+            self.vehicleCopyView =[[UIView alloc] init];
+            self.vehicleCopyView.layer.cornerRadius = 3;
+            self.vehicleCopyView.layer.borderWidth = 1;
+            self.vehicleCopyView.layer.borderColor = [UIColor whiteColor].CGColor;
+            [self addSubview:self.vehicleCopyView];
             
-            [_vehicleCopyView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.vehicleCopyView mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.bottom.equalTo(@-20);
                 make.right.equalTo(@-20);

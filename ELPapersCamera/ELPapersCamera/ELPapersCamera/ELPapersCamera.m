@@ -7,7 +7,7 @@
 //
 
 #import "ELPapersCamera.h"
-#import "ELPapersCameraViewController.h"
+#import "ELPapersCameraController.h"
 
 @interface ELPapersCamera ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -15,22 +15,21 @@
 
 @implementation ELPapersCamera
 
-+ (instancetype)shared
-{
++ (instancetype)shared {
+    
     static ELPapersCamera *obj = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        
-        obj = [[self class] new];
+        obj = [[[self class] alloc] init];
     });
     return obj;
 }
 
-- (void)showFromViewController:(UIViewController *)viewController typeCode:(ELCameraTypeCode)typeCode
-{
+- (void)showFromViewController:(UIViewController *)viewController typeCode:(ELCameraTypeCode)typeCode {
+    
     if (typeCode == ELCameraTypeAvatar) {
         
-        UIImagePickerController *vc = [UIImagePickerController new];
+        UIImagePickerController *vc = [[UIImagePickerController alloc] init];
         vc.sourceType = UIImagePickerControllerSourceTypeCamera;
         vc.allowsEditing = YES;
         vc.delegate = self;
@@ -38,7 +37,7 @@
     } else {
         
         @weakify(self);
-        ELPapersCameraViewController *vc = [ELPapersCameraViewController new];
+        ELPapersCameraController *vc = [[ELPapersCameraController alloc] init];
         vc.typeCode = typeCode;
         vc.imageBlock = ^(ELCameraTypeCode typeCode, UIImage * _Nullable image) {
             
@@ -51,12 +50,14 @@
 #pragma mark - UINavigationControllerDelegate
  
 #pragma mark - UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
-{
-    DDLog(@"%@", info);
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    
+    NJLog(@"%@", info);
     UIImage *image = info[UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if (_imageBlock) _imageBlock(ELCameraTypeAvatar, image);
+    if (self.imageBlock) {
+        self.imageBlock(ELCameraTypeAvatar, image);
+    }
 }
 
 @end

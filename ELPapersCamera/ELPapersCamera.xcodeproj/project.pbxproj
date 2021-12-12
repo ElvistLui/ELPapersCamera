@@ -14,8 +14,8 @@
 		B4ADF3392496F5C2009092BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4ADF3382496F5C2009092BE /* Assets.xcassets */; };
 		B4ADF33C2496F5C2009092BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4ADF33A2496F5C2009092BE /* LaunchScreen.storyboard */; };
 		B4ADF33F2496F5C2009092BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF33E2496F5C2009092BE /* main.m */; };
-		B4ADF3492496F997009092BE /* ELPapersCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF3482496F997009092BE /* ELPapersCameraViewController.m */; };
-		B4ADF34F24970312009092BE /* ELPapersClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF34E24970312009092BE /* ELPapersClipViewController.m */; };
+		B4ADF3492496F997009092BE /* ELPapersCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF3482496F997009092BE /* ELPapersCameraController.m */; };
+		B4ADF34F24970312009092BE /* ELPapersResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF34E24970312009092BE /* ELPapersResultController.m */; };
 		B4ADF352249705E1009092BE /* ELPapersPhotographer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF351249705E1009092BE /* ELPapersPhotographer.m */; };
 		B4ADF355249713B6009092BE /* ELPapersPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF354249713B6009092BE /* ELPapersPanelView.m */; };
 		B4ADF358249730CF009092BE /* ELPapersContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF357249730CF009092BE /* ELPapersContentView.m */; };
@@ -40,10 +40,10 @@
 		B4ADF33D2496F5C2009092BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4ADF33E2496F5C2009092BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4ADF3462496F891009092BE /* ELPapersMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersMacro.h; sourceTree = "<group>"; };
-		B4ADF3472496F997009092BE /* ELPapersCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersCameraViewController.h; sourceTree = "<group>"; };
-		B4ADF3482496F997009092BE /* ELPapersCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersCameraViewController.m; sourceTree = "<group>"; };
-		B4ADF34D24970312009092BE /* ELPapersClipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersClipViewController.h; sourceTree = "<group>"; };
-		B4ADF34E24970312009092BE /* ELPapersClipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersClipViewController.m; sourceTree = "<group>"; };
+		B4ADF3472496F997009092BE /* ELPapersCameraController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersCameraController.h; sourceTree = "<group>"; };
+		B4ADF3482496F997009092BE /* ELPapersCameraController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersCameraController.m; sourceTree = "<group>"; };
+		B4ADF34D24970312009092BE /* ELPapersResultController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersResultController.h; sourceTree = "<group>"; };
+		B4ADF34E24970312009092BE /* ELPapersResultController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersResultController.m; sourceTree = "<group>"; };
 		B4ADF350249705E1009092BE /* ELPapersPhotographer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersPhotographer.h; sourceTree = "<group>"; };
 		B4ADF351249705E1009092BE /* ELPapersPhotographer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersPhotographer.m; sourceTree = "<group>"; };
 		B4ADF353249713B6009092BE /* ELPapersPanelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersPanelView.h; sourceTree = "<group>"; };
@@ -113,10 +113,10 @@
 			children = (
 				B4ADF359249773B7009092BE /* ELPapersCamera.bundle */,
 				B4ADF3462496F891009092BE /* ELPapersMacro.h */,
-				B4ADF3472496F997009092BE /* ELPapersCameraViewController.h */,
-				B4ADF3482496F997009092BE /* ELPapersCameraViewController.m */,
-				B4ADF34D24970312009092BE /* ELPapersClipViewController.h */,
-				B4ADF34E24970312009092BE /* ELPapersClipViewController.m */,
+				B4ADF3472496F997009092BE /* ELPapersCameraController.h */,
+				B4ADF3482496F997009092BE /* ELPapersCameraController.m */,
+				B4ADF34D24970312009092BE /* ELPapersResultController.h */,
+				B4ADF34E24970312009092BE /* ELPapersResultController.m */,
 				B4ADF353249713B6009092BE /* ELPapersPanelView.h */,
 				B4ADF354249713B6009092BE /* ELPapersPanelView.m */,
 				B4ADF356249730CF009092BE /* ELPapersContentView.h */,
@@ -236,13 +236,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4ADF3342496F5C2009092BE /* ViewController.m in Sources */,
-				B4ADF3492496F997009092BE /* ELPapersCameraViewController.m in Sources */,
+				B4ADF3492496F997009092BE /* ELPapersCameraController.m in Sources */,
 				B41A8F5024A038B700DF5044 /* ELPapersCamera.m in Sources */,
 				B4ADF352249705E1009092BE /* ELPapersPhotographer.m in Sources */,
 				B4ADF32E2496F5C2009092BE /* AppDelegate.m in Sources */,
 				B4ADF33F2496F5C2009092BE /* main.m in Sources */,
 				B4ADF355249713B6009092BE /* ELPapersPanelView.m in Sources */,
-				B4ADF34F24970312009092BE /* ELPapersClipViewController.m in Sources */,
+				B4ADF34F24970312009092BE /* ELPapersResultController.m in Sources */,
 				B4ADF358249730CF009092BE /* ELPapersContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -371,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -385,9 +385,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2469K559SY;
+				DEVELOPMENT_TEAM = ATGRMH89WM;
 				INFOPLIST_FILE = ELPapersCamera/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -404,9 +404,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2469K559SY;
+				DEVELOPMENT_TEAM = ATGRMH89WM;
 				INFOPLIST_FILE = ELPapersCamera/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

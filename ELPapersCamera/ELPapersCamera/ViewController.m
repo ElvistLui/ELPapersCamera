@@ -44,7 +44,7 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-    _imgView = [UIImageView new];
+    _imgView = [[UIImageView alloc] init];
     _imgView.frame = CGRectMake(0, 0, kScreenWidth, 300);
     _imgView.contentMode = UIViewContentModeScaleAspectFit;
     _imgView.backgroundColor = [UIColor lightGrayColor];

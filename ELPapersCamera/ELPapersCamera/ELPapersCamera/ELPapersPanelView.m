@@ -10,8 +10,8 @@
 
 @implementation ELPapersPanelView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
+    
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -20,13 +20,13 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-    if (_typeCode == ELCameraTypeNormal) {
+- (void)drawRect:(CGRect)rect {
+    
+    if (self.typeCode == ELCameraTypeNormal) {
         
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:[UIScreen mainScreen].bounds];
         [path fillWithBlendMode:kCGBlendModeClear alpha:1.0];
-    } else if (_typeCode == ELCameraTypeAvatar) {
+    } else if (self.typeCode == ELCameraTypeAvatar) {
            
         CGFloat size = rect.size.width*0.5;
         UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake((rect.size.width-size)/2, 150, size, size)

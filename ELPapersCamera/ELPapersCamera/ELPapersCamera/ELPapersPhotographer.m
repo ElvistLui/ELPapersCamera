@@ -18,8 +18,8 @@
 @implementation ELPapersPhotographer
 
 #pragma mark - public
-- (void)setupCameraWithViewController:(UIViewController *)vc
-{
+- (void)setupCameraWithViewController:(UIViewController *)vc {
+    
     AVCaptureSession *session = [[AVCaptureSession alloc]init];
     _session = session;
  
@@ -33,15 +33,13 @@
         }
     }
     if(!device) {
-        
-        DDLog(@"取得后置摄像头错误");
+        NJLog(@"取得后置摄像头错误");
         return;
     }
     NSError *error = nil;
     AVCaptureDeviceInput *captureInput = [[AVCaptureDeviceInput alloc] initWithDevice:device error:&error];
     if(error) {
-        
-        DDLog(@"创建输入数据对象错误");
+        NJLog(@"创建输入数据对象错误");
         return;
     }
     
@@ -49,12 +47,10 @@
     NSDictionary *setting = @{AVVideoCodecKey:AVVideoCodecJPEG};
     [imageOutput setOutputSettings:setting];
     
-    if([session canAddInput:captureInput]) {
-        
+    if ([session canAddInput:captureInput]) {
         [session addInput:captureInput];
     }
-    if([session canAddOutput:imageOutput]) {
-        
+    if ([session canAddOutput:imageOutput]) {
         [session addOutput:imageOutput];
     }
     
@@ -67,8 +63,8 @@
     [session startRunning];
 }
 
-- (void)takeImage:(ELPapersPhotographerBlock)block
-{
+- (void)takeImage:(ELPapersPhotographerBlock)block {
+    
     AVCaptureStillImageOutput *output = _session.outputs.firstObject;
     AVCaptureConnection *connection = [output connectionWithMediaType:AVMediaTypeVideo];
     [output captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error){
@@ -79,16 +75,18 @@
             UIImage *image = [[UIImage alloc] initWithData:imageData];
             
             [self.session stopRunning];
-            if (block) block(image);
+            if (block) {
+                block(image);
+            }
         }
     }];
 }
-- (void)start
-{
+
+- (void)start {
     [_session startRunning];
 }
-- (void)stop
-{
+
+- (void)stop {
     [_session stopRunning];
 }
 

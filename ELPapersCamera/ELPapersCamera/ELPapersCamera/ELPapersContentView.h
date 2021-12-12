@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ELPapersContentView : UIView
 
-@property (nonatomic, strong) UILabel *titleLabel;  ///< 描述
-@property (nonatomic, strong) UILabel *descLabel;   ///< 描述
+/// 描述
+@property (nonatomic, strong) UILabel *titleLabel;
+/// 描述
+@property (nonatomic, strong) UILabel *descLabel;
 
 @property (nonatomic,assign) ELCameraTypeCode typeCode;
 

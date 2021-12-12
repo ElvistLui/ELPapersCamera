@@ -1,5 +1,5 @@
 //
-//  ELPapersClipViewController.h
+//  ELPapersResultController.h
 //  ELPapersCamera
 //
 //  Created by Elvist on 2020/6/13.
@@ -12,18 +12,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ELPapersClipViewControllerDelegate <NSObject>
+@protocol ELPapersResultControllerDelegate <NSObject>
 
 /// 重拍
-- (void)ELPapersClipViewControllerClickRemake;
+- (void)ELPapersResultControllerClickRemake;
 /// 完成
-- (void)ELPapersClipViewControllerClickDetermine;
+- (void)ELPapersResultControllerClickDetermine;
 
 @end
 
-@interface ELPapersClipViewController : UIViewController
+@interface ELPapersResultController : UIViewController
 
-@property (nonatomic, weak) id<ELPapersClipViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<ELPapersResultControllerDelegate> delegate;
 
 /// 显示裁切后的图片
 /// @param image 裁切后的图片

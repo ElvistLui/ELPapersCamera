@@ -92,11 +92,11 @@ typedef void(^ _Nullable ELPapersCameraImageBlock)(ELCameraTypeCode typeCode, UI
     #endif
 #endif
 
-#ifndef DDLog
+#ifndef NJLog
 #ifdef DEBUG
-#   define DDLog(fmt, ...) NSLog((@"[Line %d] " fmt), __LINE__, ##__VA_ARGS__)    // 这个替换方法可以打印所在类
+#   define NJLog(fmt, ...) NSLog((@"[Line %d] " fmt), __LINE__, ##__VA_ARGS__)    // 这个替换方法可以打印所在类
 #else
-#   define DDLog(...)
+#   define NJLog(...)
 #endif
 #endif
 
