@@ -40,12 +40,12 @@
         [path2 stroke];
     } else {
     
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 150, rect.size.width-30, (rect.size.width-30)*0.645)
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 150, rect.size.width-30, (rect.size.width-30)*kPapersAspectRatio)
                                                    byRoundingCorners:UIRectCornerAllCorners
                                                          cornerRadii:CGSizeMake(12, 12)];
         [path fillWithBlendMode:kCGBlendModeClear alpha:1.0];
         
-        UIBezierPath *path2= [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 150, rect.size.width-30, (rect.size.width-30)*0.645)
+        UIBezierPath *path2= [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 150, rect.size.width-30, (rect.size.width-30)*kPapersAspectRatio)
                                                    byRoundingCorners:UIRectCornerAllCorners
                                                          cornerRadii:CGSizeMake(12, 12)];
         path2.lineWidth = 1;

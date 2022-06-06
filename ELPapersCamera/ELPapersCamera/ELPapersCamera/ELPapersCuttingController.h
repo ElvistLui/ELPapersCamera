@@ -1,9 +1,9 @@
 //
-//  ELPapersCameraController.h
+//  ELPapersCuttingController.h
 //  ELPapersCamera
 //
-//  Created by Elvist on 2020/6/13.
-//  Copyright © 2020 xiaoxiao. All rights reserved.
+//  Created by Shitao Lv on 2021/12/12.
+//  Copyright © 2021 xiaoxiao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -12,9 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 拍摄画面
-@interface ELPapersCameraController : UIViewController
+/// 选择照片后手动裁切
+@interface ELPapersCuttingController : UIViewController
 
+/// 要裁切的图片
+@property (nonatomic, strong) UIImage *originalImage;
 /// 拍摄的证件类型
 @property (nonatomic, assign) ELCameraTypeCode typeCode;
 /// 拍照并确定后的回调

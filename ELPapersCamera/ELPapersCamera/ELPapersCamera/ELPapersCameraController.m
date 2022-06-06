@@ -8,13 +8,16 @@
 
 #import "ELPapersCameraController.h"
 #import "ELPapersResultController.h"
+#import "ELPapersCuttingController.h"
 
 #import "ELPapersPanelView.h"
 #import "ELPapersContentView.h"
 
 #import "ELPapersPhotographer.h"
 
-@interface ELPapersCameraController () <ELPapersResultControllerDelegate>
+#import <Photos/Photos.h>
+
+@interface ELPapersCameraController () <ELPapersResultControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) ELPapersPanelView *panelView; ///< 面板视图
 @property (nonatomic, strong) ELPapersContentView *contentView; ///< 中间容器
@@ -31,8 +34,7 @@
     BOOL _isPresented;
     BOOL _firstInit;
 }
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         
@@ -40,14 +42,15 @@
     }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self setupView];
 }
-- (void)viewDidLayoutSubviews
-{
+
+- (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
     self.clipVC.view.frame = self.view.bounds;
@@ -59,8 +62,8 @@
 }
 
 #pragma mark - 初始化视图
-- (void)setupView
-{
+- (void)setupView {
+    
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
         
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -75,7 +78,6 @@
     if (_isPresented) {
         
     } else {
-        
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(didClickCancelButton:)];
     }
     
@@ -93,8 +95,9 @@
     self.clipVC.delegate = self;
     [self addChildViewController:self.clipVC];
 }
-- (void)setupPanelView
-{
+
+- (void)setupPanelView {
+    
     self.panelView = [[ELPapersPanelView alloc] initWithFrame:self.view.bounds];
     self.panelView.typeCode = self.typeCode;
     [self.view addSubview:self.panelView];
@@ -103,7 +106,7 @@
     tipLabel.font = [UIFont systemFontOfSize:12];
     tipLabel.textColor = [UIColor whiteColor];
     tipLabel.textAlignment = NSTextAlignmentCenter;
-    tipLabel.text = @"避免反光影响，确保图像清晰，可以提高识别率";
+//    tipLabel.text = @"避免反光影响，确保图像清晰，可以提高识别率";
     [self.panelView addSubview:tipLabel];
     
     self.contentView = [[ELPapersContentView alloc] init];
@@ -126,65 +129,56 @@
         make.top.equalTo(@150);
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
-        make.height.equalTo(self.contentView.mas_width).multipliedBy(0.645);
+        make.height.equalTo(self.contentView.mas_width).multipliedBy(kPapersAspectRatio);
     }];
     
-    if (self.typeCode == ELCameraTypeNormal) {
-        
-        tipLabel.hidden = YES;
-        self.contentView.hidden = YES;
-        self.navigationItem.title = @"默认";
-    } else {
-        
-        self.contentView.hidden = NO;
-        switch (self.typeCode) {
-            case ELCameraTypeAvatar:
-                self.navigationItem.title = @"拍摄头像";
-                self.contentView.hidden = YES;
-                break;
-            case ELCameraTypeIdFront:
-                self.navigationItem.title = @"中华人民共和国居民身份证正面";
-                self.contentView.titleLabel.text = @"中华人民共和国居民身份证正面";
-                self.contentView.descLabel.text = @"将身份证正面置于此区域";
-                break;
-            case ELCameraTypeIdBack:
-                self.navigationItem.title = @"中华人民共和国居民身份证背面";
-                self.contentView.titleLabel.text = @"中华人民共和国居民身份证背面";
-                self.contentView.descLabel.text = @"将身份证背面置于此区域";
-                break;
-            case ELCameraTypeDriverFront:
-                self.navigationItem.title = @"拍摄驾驶证正本正面";
-                self.contentView.titleLabel.text = @"中华人民共和国机动车驾驶证";
-                self.contentView.descLabel.text = @"将驾驶证主页置于此区域，并对齐左下角发证机关印章";
-                break;
-            case ELCameraTypeDriverBack:
-                self.navigationItem.title = @"拍摄驾驶证正本背面";
-                self.contentView.titleLabel.text = @"中华人民共和国机动车驾驶证";
-                self.contentView.descLabel.text = @"将驾驶证正本背面置于此区域，并对齐左下角的条形码";
-                break;
-            case ELCameraTypeDriverCopy:
-                self.navigationItem.title = @"拍摄驾驶证副本";
-                self.contentView.titleLabel.text = @"中华人民共和国机动车驾驶证副本";
-                self.contentView.descLabel.text = @"将驾驶证副本置于此区域，并对齐右下角条形码";
-                break;
-            case ELCameraTypeVehicleFront:
-                self.navigationItem.title = @"拍摄行驶证正本";
-                self.contentView.titleLabel.text = @"中华人民共和国机动车行驶证";
-                self.contentView.descLabel.text = @"将行驶证主页置于此区域，并对齐左下角发证机关印章";
-                break;
-            case ELCameraTypeVehicleCopy:
-                self.navigationItem.title = @"拍摄行驶证副本";
-                self.contentView.titleLabel.text = @"中华人民共和国机动车行驶证副本";
-                self.contentView.descLabel.text = @"将行驶证副本置于此区域，并对齐右下角条形码";
-                break;
-                
-            default:
-                break;
-        }
+    self.contentView.hidden = NO;
+    switch (self.typeCode) {
+        case ELCameraTypeIdFront:
+            self.navigationItem.title = @"中华人民共和国居民身份证正面";
+            self.contentView.titleLabel.text = @"中华人民共和国居民身份证正面";
+            self.contentView.descLabel.text = @"将身份证正面置于此区域";
+            break;
+        case ELCameraTypeIdBack:
+            self.navigationItem.title = @"中华人民共和国居民身份证背面";
+            self.contentView.titleLabel.text = @"中华人民共和国居民身份证背面";
+            self.contentView.descLabel.text = @"将身份证背面置于此区域";
+            break;
+        case ELCameraTypeDriverFront:
+            self.navigationItem.title = @"拍摄驾驶证正本正面";
+            self.contentView.titleLabel.text = @"中华人民共和国机动车驾驶证";
+            self.contentView.descLabel.text = @"将驾驶证主页置于此区域，并对齐左下角发证机关印章";
+            break;
+        case ELCameraTypeDriverBack:
+            self.navigationItem.title = @"拍摄驾驶证正本背面";
+            self.contentView.titleLabel.text = @"中华人民共和国机动车驾驶证";
+            self.contentView.descLabel.text = @"将驾驶证正本背面置于此区域，并对齐左下角的条形码";
+            break;
+        case ELCameraTypeDriverCopy:
+            self.navigationItem.title = @"拍摄驾驶证副本";
+            self.contentView.titleLabel.text = @"中华人民共和国机动车驾驶证副本";
+            self.contentView.descLabel.text = @"将驾驶证副本置于此区域，并对齐右下角条形码";
+            break;
+        case ELCameraTypeVehicleFront:
+            self.navigationItem.title = @"拍摄行驶证正本";
+//            self.contentView.titleLabel.text = @"中华人民共和国机动车行驶证";
+//            self.contentView.descLabel.text = @"将行驶证主页置于此区域，并对齐左下角发证机关印章";
+            self.contentView.descLabel.text = @"请将行驶证主页边缘对齐边框，避免反光";
+            break;
+        case ELCameraTypeVehicleCopy:
+            self.navigationItem.title = @"拍摄行驶证副本";
+//            self.contentView.titleLabel.text = @"中华人民共和国机动车行驶证副本";
+//            self.contentView.descLabel.text = @"将行驶证副本置于此区域，并对齐右下角条形码";
+            self.contentView.descLabel.text = @"请将行驶证副页边缘对齐边框，避免反光";
+            break;
+            
+        default:
+            break;
     }
 }
-- (void)setupBottomView
-{
+
+- (void)setupBottomView {
+    
     self.bottomView = [[UIView alloc] init];
     self.bottomView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.bottomView];
@@ -194,6 +188,13 @@
     [cameraButton setImage:[UIImage imageNamed:@"ELPapersCamera.bundle/img_toolbar_takephoto"] forState:UIControlStateNormal];
     [cameraButton addTarget:self action:@selector(didClickCameraButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView addSubview:cameraButton];
+    
+    UIButton *albumButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    albumButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [albumButton setTitle:@"相册" forState:UIControlStateNormal];
+    [albumButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [albumButton addTarget:self action:@selector(didClickAlbumButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView addSubview:albumButton];
     
     if (_isPresented) {
         
@@ -210,7 +211,7 @@
             make.width.equalTo(@100);
         }];
     }
-    
+    // layout
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.bottom.left.right.equalTo(@0);
@@ -221,9 +222,14 @@
         make.centerX.centerY.equalTo(self.bottomView);
         make.width.height.equalTo(@(60));
     }];
+    [albumButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.bottom.left.equalTo(@0);
+        make.width.equalTo(@100);
+    }];
 }
 
-#pragma mark - action
+#pragma mark - Actions
 - (void)didClickCancelButton:(UIButton *)sender {
     
     [self.camera stop];
@@ -243,66 +249,102 @@
     }];
 }
 
-#pragma mark - private
+- (void)didClickAlbumButton:(UIButton *)sender {
+    
+    [self checkAuthorizationStatus:^{
+        
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+        imagePicker.allowsEditing = NO;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.delegate = self;
+        [self presentViewController:imagePicker animated:YES completion:^{
+            [self.camera stop];
+        }];
+    }];
+}
+
+#pragma mark - 私有方法
 - (void)clipImage:(UIImage *)image {
     
     CGSize sz = [image size];
     CGSize size = self.view.bounds.size;
     NJLog(@"%f", kScreenHeight);
     
-    double camearScale = 9/16.f;    // 相机画面宽高比
-    double widthScale = 0;
-    double heightScale = 0;
+    double camearRatio = 9/16.f;    // 相机画面宽高比
+    double widthRatio = 0;
+    double heightRatio = 0;
     CGFloat topPadding = 0.f;       // 相机画面填充后，超出屏幕上方的距离
     CGFloat leftPadding = 0.f;      // 相机画面填充后，超出屏幕左侧的距离
-    CGFloat cameraW = size.height*camearScale;  // 相机应该有的宽度
-    CGFloat cameraH = size.width/camearScale;   // 相机应该有的高度
+    CGFloat cameraW = size.height*camearRatio;  // 相机应该有的宽度
+    CGFloat cameraH = size.width/camearRatio;   // 相机应该有的高度
     if (cameraW > size.width) {
         
         leftPadding = (cameraW-size.width)/2.f;
-        widthScale = sz.width/cameraW;
+        widthRatio = sz.width/cameraW;
     } else {
-        widthScale = sz.width/size.width;
+        widthRatio = sz.width/size.width;
     }
     if (cameraH > size.height) {
         
         topPadding = (cameraH-size.height)/2.f;
-        heightScale = sz.height/cameraH;
+        heightRatio = sz.height/cameraH;
     } else {
-        heightScale = sz.height/size.height;
+        heightRatio = sz.height/size.height;
     }
     
-    if (self.typeCode == ELCameraTypeNormal){
-        
-        CGFloat x = widthScale*leftPadding;
-        CGFloat y = heightScale*topPadding;
-        CGFloat w = widthScale*size.width;
-        CGFloat h = heightScale*(size.height-100);
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), NO, 0);
-        [image drawAtPoint:CGPointMake(-x, -y)];
-    } else if (self.typeCode == ELCameraTypeAvatar) {
-        
-        CGFloat x = widthScale*(15+leftPadding);
-        CGFloat y = heightScale*(150+topPadding);
-        CGFloat w = widthScale*(size.width-30);
-        CGFloat h = w*0.645;
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), NO, 0);
-        [image drawAtPoint:CGPointMake(-x, -y)];
-    } else {
-        
-        CGFloat x = widthScale*(15+leftPadding);
-        CGFloat y = heightScale*(150+topPadding);
-        CGFloat w = widthScale*(size.width-30);
-        CGFloat h = w*0.645;
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), NO, 0);
-        [image drawAtPoint:CGPointMake(-x, -y)];
-    }
+    CGFloat x = widthRatio*(15+leftPadding);
+    CGFloat y = heightRatio*(150+topPadding);
+    CGFloat w = widthRatio*(size.width-30);
+    CGFloat h = w*kPapersAspectRatio;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), NO, 0);
+    [image drawAtPoint:CGPointMake(-x, -y)];
     UIImage *result = UIGraphicsGetImageFromCurrentImageContext();
     self.resultImage = result;
     UIGraphicsEndImageContext();
     
     [self.clipVC setImage:self.resultImage typeCode:self.typeCode];
     [self.view addSubview:self.clipVC.view];
+}
+
+- (void)checkAuthorizationStatus:(void (^)(void))success {
+    
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    switch (status) {
+        case PHAuthorizationStatusNotDetermined:
+        {
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    switch (status) {
+                        case PHAuthorizationStatusRestricted:
+                        case PHAuthorizationStatusDenied:
+//                            [[NJHUDHelp sharedNJHUDHelp] showInfoWithStatus:@"请先开启相册权限"];
+                            break;
+                            
+                        default:
+                            if (success) {
+                                success();
+                            }
+                            break;
+                    }
+                });
+            }];
+        }
+            break;
+        case PHAuthorizationStatusRestricted:
+        case PHAuthorizationStatusDenied:
+//            [[NJHUDHelp sharedNJHUDHelp] showInfoWithStatus:@"请先开启相册权限"];
+            break;
+            
+        default:
+            if (success) {
+                success();
+            }
+            break;
+    }
 }
 
 #pragma mark - ELPapersResultControllerDelegate
@@ -318,6 +360,33 @@
         self.imageBlock(self.typeCode, self.resultImage);
     }
     [self didClickCancelButton:nil];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self.camera start];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NJLog(@"%@", info);
+    UIImage *result = info[UIImagePickerControllerOriginalImage];
+    ELPapersCuttingController *vc = [[ELPapersCuttingController alloc] init];
+    vc.originalImage = result;
+    vc.typeCode = self.typeCode;
+    vc.imageBlock = ^(ELCameraTypeCode typeCode, UIImage * _Nullable image) {
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 这里是为了动画效果
+            if (self.imageBlock) {
+                self.imageBlock(typeCode, image);
+            }
+        });
+    };
+    [picker pushViewController:vc animated:YES];
 }
 
 @end

@@ -12,6 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 裁切框位置
 @interface ELPapersPanelView : UIView
 
 @property (nonatomic,assign) ELCameraTypeCode typeCode;

@@ -23,13 +23,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self setupView];
 }
 
 #pragma mark - 初始化视图
 - (void)setupView {
-    
-    self.view.backgroundColor = [UIColor whiteColor];
     
     self.backgroundView = [[UIImageView alloc] init];
     self.backgroundView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.76];
@@ -38,17 +38,15 @@
     [self setupBottomView];
     
     self.normalImgView = [[UIImageView alloc] init];
-//    self.normalImgView.contentMode = UIViewContentModeScaleAspectFill;
     self.normalImgView.contentMode = UIViewContentModeScaleToFill;
     self.normalImgView.clipsToBounds = YES;
     [self.view addSubview:self.normalImgView];
     
     self.clipImageView = [[UIImageView alloc] init];
-//    self.clipImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.clipImageView.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:self.clipImageView];
     
-    //
+    // layout
     [self.backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.top.bottom.left.right.equalTo(@0);
@@ -63,7 +61,7 @@
         make.top.equalTo(@150);
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
-        make.height.equalTo(self.clipImageView.mas_width).multipliedBy(0.645);
+        make.height.equalTo(self.clipImageView.mas_width).multipliedBy(kPapersAspectRatio);
     }];
 }
 
@@ -87,7 +85,7 @@
     [determineButton addTarget:self action:@selector(didClickDetermineButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView addSubview:determineButton];
     
-    //
+    // layout
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.bottom.left.right.equalTo(@0);
@@ -105,7 +103,7 @@
     }];
 }
 
-#pragma mark - action
+#pragma mark - Actions
 - (void)didClickRemakeButton:(UIButton *)sender {
     
     if ([self.delegate respondsToSelector:@selector(ELPapersResultControllerClickRemake)]) {
@@ -123,17 +121,9 @@
 #pragma mark - public
 - (void)setImage:(UIImage *)image typeCode:(ELCameraTypeCode)typeCode {
     
-    if (typeCode == ELCameraTypeNormal) {
-        
-        self.normalImgView.hidden = NO;
-        self.clipImageView.hidden = YES;
-        self.normalImgView.image = image;
-    } else {
-        
-        self.normalImgView.hidden = YES;
-        self.clipImageView.hidden = NO;
-        self.clipImageView.image = image;
-    }
+    self.normalImgView.hidden = YES;
+    self.clipImageView.hidden = NO;
+    self.clipImageView.image = image;
 }
 
 @end

@@ -9,8 +9,9 @@
 #import "ViewController.h"
 
 #import "ELPapersCamera.h"
+#import "ELPapersCuttingController.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *imgView;
@@ -37,6 +38,7 @@
                    [self dicWithTitle:@"驾驶证副本" code:ELCameraTypeDriverCopy],
                    [self dicWithTitle:@"行驶证正面" code:ELCameraTypeVehicleFront],
                    [self dicWithTitle:@"行驶证副本" code:ELCameraTypeVehicleCopy],
+                   [self dicWithTitle:@"照片选择-行驶证正本" code:ELCameraTypeVehicleFront],
     ];
     
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -71,6 +73,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (indexPath.row == 9) {
+        
+        // 去相册选择
+        // 需要先判断权限
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+        imagePicker.allowsEditing = NO;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.delegate = self;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+        return;
+    }
 
     NSDictionary *dic = _dataArray[indexPath.row];
     @weakify(self);
@@ -81,6 +96,29 @@
         weak_self.imgView.image = image;
     };
     [camera showFromViewController:self typeCode:[dic[@"code"] integerValue]];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NJLog(@"%@", info);
+    @weakify(self);
+    UIImage *result = info[UIImagePickerControllerOriginalImage];
+    ELPapersCuttingController *vc = [[ELPapersCuttingController alloc] init];
+    vc.originalImage = result;
+    vc.typeCode = ELCameraTypeVehicleCopy;
+    vc.imageBlock = ^(ELCameraTypeCode typeCode, UIImage * _Nullable image) {
+        
+        weak_self.imgView.image = image;
+    };
+    [picker pushViewController:vc animated:YES];
+//    [picker dismissViewControllerAnimated:YES completion:^{
+//        NSLog(@"选照片");
+//    }];
 }
 
 #pragma mark - private

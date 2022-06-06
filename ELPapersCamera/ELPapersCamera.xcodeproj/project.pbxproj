@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47B163BC2765B7B100ADD857 /* ELPapersCuttingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47B163BB2765B7B100ADD857 /* ELPapersCuttingController.m */; };
 		B41A8F5024A038B700DF5044 /* ELPapersCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = B41A8F4F24A038B700DF5044 /* ELPapersCamera.m */; };
 		B4ADF32E2496F5C2009092BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF32D2496F5C2009092BE /* AppDelegate.m */; };
 		B4ADF3342496F5C2009092BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4ADF3332496F5C2009092BE /* ViewController.m */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		021B1DBCD16458D616E1B797 /* Pods-ELPapersCamera.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELPapersCamera.debug.xcconfig"; path = "Target Support Files/Pods-ELPapersCamera/Pods-ELPapersCamera.debug.xcconfig"; sourceTree = "<group>"; };
 		3AC0542D604A53CD20CF45D4 /* Pods-ELPapersCamera.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELPapersCamera.release.xcconfig"; path = "Target Support Files/Pods-ELPapersCamera/Pods-ELPapersCamera.release.xcconfig"; sourceTree = "<group>"; };
+		47B163BA2765B7B100ADD857 /* ELPapersCuttingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersCuttingController.h; sourceTree = "<group>"; };
+		47B163BB2765B7B100ADD857 /* ELPapersCuttingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersCuttingController.m; sourceTree = "<group>"; };
 		6D0879BC412FD135FA462E03 /* libPods-ELPapersCamera.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ELPapersCamera.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41A8F4E24A038B700DF5044 /* ELPapersCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELPapersCamera.h; sourceTree = "<group>"; };
 		B41A8F4F24A038B700DF5044 /* ELPapersCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELPapersCamera.m; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 				B4ADF3482496F997009092BE /* ELPapersCameraController.m */,
 				B4ADF34D24970312009092BE /* ELPapersResultController.h */,
 				B4ADF34E24970312009092BE /* ELPapersResultController.m */,
+				47B163BA2765B7B100ADD857 /* ELPapersCuttingController.h */,
+				47B163BB2765B7B100ADD857 /* ELPapersCuttingController.m */,
 				B4ADF353249713B6009092BE /* ELPapersPanelView.h */,
 				B4ADF354249713B6009092BE /* ELPapersPanelView.m */,
 				B4ADF356249730CF009092BE /* ELPapersContentView.h */,
@@ -239,6 +244,7 @@
 				B4ADF3492496F997009092BE /* ELPapersCameraController.m in Sources */,
 				B41A8F5024A038B700DF5044 /* ELPapersCamera.m in Sources */,
 				B4ADF352249705E1009092BE /* ELPapersPhotographer.m in Sources */,
+				47B163BC2765B7B100ADD857 /* ELPapersCuttingController.m in Sources */,
 				B4ADF32E2496F5C2009092BE /* AppDelegate.m in Sources */,
 				B4ADF33F2496F5C2009092BE /* main.m in Sources */,
 				B4ADF355249713B6009092BE /* ELPapersPanelView.m in Sources */,

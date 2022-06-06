@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// 拍摄结果
 @interface ELPapersResultController : UIViewController
 
 @property (nonatomic, weak) id<ELPapersResultControllerDelegate> delegate;

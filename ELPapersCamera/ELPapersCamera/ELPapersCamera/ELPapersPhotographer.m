@@ -21,7 +21,7 @@
 - (void)setupCameraWithViewController:(UIViewController *)vc {
     
     AVCaptureSession *session = [[AVCaptureSession alloc]init];
-    _session = session;
+    self.session = session;
  
     AVCaptureDevice *device = nil;
     NSArray *cameras = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -65,7 +65,7 @@
 
 - (void)takeImage:(ELPapersPhotographerBlock)block {
     
-    AVCaptureStillImageOutput *output = _session.outputs.firstObject;
+    AVCaptureStillImageOutput *output = self.session.outputs.firstObject;
     AVCaptureConnection *connection = [output connectionWithMediaType:AVMediaTypeVideo];
     [output captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error){
         
@@ -83,11 +83,11 @@
 }
 
 - (void)start {
-    [_session startRunning];
+    [self.session startRunning];
 }
 
 - (void)stop {
-    [_session stopRunning];
+    [self.session stopRunning];
 }
 
 @end

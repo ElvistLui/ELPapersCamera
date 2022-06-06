@@ -46,6 +46,8 @@ typedef void(^ _Nullable ELPapersCameraImageBlock)(ELCameraTypeCode typeCode, UI
 #define kWindow_IndicatorHeight (kDevice_Is_iPhoneX ? 34.f : 0)
 #define kWindow_TabBarHeight    (49.f + kWindow_IndicatorHeight)
 
+#define kPapersAspectRatio  0.645
+
 //****** 颜色相关 ******//
 #define kRGBAColor(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 #define kRGBColor(A,B,C)    kRGBAColor(A,B,C,1.0)
